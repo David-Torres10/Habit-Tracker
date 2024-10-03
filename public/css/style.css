@@ -1,7 +1,8 @@
+
 body {
-    font-family: 'Proxima-nova';
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #212121;
 }
 
 .tracker-wrapper {
@@ -9,24 +10,43 @@ body {
     max-width: 600px;
 }
 
+#title {
+    color: #4bda63;
+    font-weight: 600;
+    font-size: 60px;
+    text-shadow: #ffffff;
+}
+
+#footer {
+    color: #4bda63;
+}
+
 .tracker {
     margin: 20px 0;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #444444;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    color: #ffffff;
+}
+
+.modal .modal-dialog .modal-content{
+    background-color: #474747;
+    color: #ffffff;
 }
 
 .container {
     display: grid;
+    flex-wrap: wrap;
+    justify-content: space-around;
     grid-template-columns: repeat(6, 1fr);
-    column-gap: 1px;
-    row-gap: 1px;
+    margin: 10px;
 }
 
 .day {
     width: 60px;
     height: 60px;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,9 +54,52 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    color: black;
 }
 
-/* .day.x-marked {
-    background-color: #15B392;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #313131;
+    border-color: #313131;
+}
+
+.day.x-marked {
+    background-color: #4bda63;
     color: white;
-} */
+}
+
+.progress {
+    margin-top: 15px;
+    height: 20px;
+}
+
+.progress-bar {
+    background-color: #0d6efd;
+}
+
+img {
+    width: 20px;
+    margin-bottom: 5px;
+}
+
+.streak-wrapper {
+    display: inline-flex;
+    align-items: center;  /* Aligns SVG and text vertically centered */
+    gap: 5px;  /* Adds a small gap between the SVG and the number */
+}
+
+.streak-icon {
+    width: 50px;  /* Adjust the width of the icon */
+    height: auto;  /* Keep the aspect ratio */
+    
+}
+
+#count {
+    margin-top: 14px;
+    font-size: 24px;  /* Adjust font size as needed */
+    font-weight: 400;
+}
+
