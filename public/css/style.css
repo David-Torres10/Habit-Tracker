@@ -1,0 +1,42 @@
+body {
+    font-family: 'Proxima-nova';
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.tracker-wrapper {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.tracker {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 1px;
+    row-gap: 1px;
+}
+
+.day {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* .day.x-marked {
+    background-color: #15B392;
+    color: white;
+} */
