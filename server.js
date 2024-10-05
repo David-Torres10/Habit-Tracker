@@ -8,8 +8,6 @@ var multer = require('multer');
 var upload = multer();
 
 
-
-
 const static_dir = path.join(__dirname, 'static');
 const PORT = process.env.PORT || 3000;
 
@@ -20,6 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array()); 
 app.use(express.static('public'));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
 
 let db;
 (async () => {
