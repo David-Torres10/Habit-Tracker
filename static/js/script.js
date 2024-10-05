@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.ok) {
             const habitData = await response.json(); // Get the habit data from the server
             createAndDisplayHabit(habitData); // Call the function to create the habit display
+            document.getElementById('habitForm').reset();
         }
     });
 
@@ -81,9 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.classList.add('progress');
     
         const progressBarInner = document.createElement('div'); // Inner bar for actual progress
-        progressBarInner.classList.add('progress-bar', 'progress-bar-striped', 'bg-success', 'progress-bar-animated');
-        progressBarInner.setAttribute('role', 'progressbar');
-        progressBarInner.style.width = '0%';  // Initial progress is 0%
+        progressBarInner.classList.add('progress-bar', 'progress-bar-animated', 'progress-bar-striped');
+        // progressBarInner.setAttribute('role', 'progressbar');
+        // progressBarInner.setAttribute('aria-valuenow', '0');
+        // progressBarInner.setAttribute('aria-valuemin', '0');
+        // progressBarInner.setAttribute('aria-valuemax', '100');
         progressBar.appendChild(progressBarInner);
     
         container.parentElement.appendChild(progressBar); // Add progress bar below the calendar

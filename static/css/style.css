@@ -1,33 +1,54 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
     text-align: center;
     background-color: #212121;
 }
-
-.tracker-wrapper {
-    margin: 20px auto;
-    max-width: 600px;
-}
-
 #title {
-    color: #4bda63;
+    color: #ffffff;
     font-weight: 600;
     font-size: 60px;
     text-shadow: #ffffff;
+    margin-bottom: 50px;
 }
 
 #footer {
     color: #4bda63;
 }
 
+.tracker-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allows the trackers to wrap onto the next line if there's not enough space */
+    justify-content: center;/* Centers the trackers horizontally */
+    gap: 50px; /* Adds space between the trackers */
+    align-items: flex-start;
+}
+
+.tracker-wrapper h3 {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+
 .tracker {
-    margin: 20px 0;
     padding: 20px;
+    padding-right: 34px;
     background-color: #444444;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 6px rgba(222, 56, 255, 0.1); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.521), 0 6px 20px 0 rgba(0, 0, 0, 0.678);
     border-radius: 10px;
-    color: #ffffff;
+    color: #4bda63;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    flex-grow: 0;
+}
+.container {
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 10px;
 }
 
 .modal .modal-dialog .modal-content{
@@ -35,35 +56,30 @@ body {
     color: #ffffff;
 }
 
-.container {
-    display: grid;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    grid-template-columns: repeat(6, 1fr);
-    margin: 10px;
-}
 
 .day {
     width: 60px;
     height: 60px;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #e9ecef;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.6s ease;
     color: black;
+    margin-right: 5px;
 }
 
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited,
-.btn-primary:focus {
-    background-color: #313131;
-    border-color: #313131;
+.submit,
+.submit:hover,
+.submit:active,
+.submit:visited,
+.submit:focus {
+    background-color: #ffffff00;
+    border-color: #ffffff00;
+    color: #ea00ff;
 }
 
 .day.x-marked {
@@ -77,13 +93,9 @@ body {
 }
 
 .progress-bar {
-    background-color: #0d6efd;
+    background-color: #4bda63;
 }
 
-img {
-    width: 20px;
-    margin-bottom: 5px;
-}
 
 .streak-wrapper {
     display: inline-flex;
@@ -91,10 +103,9 @@ img {
     gap: 5px;  /* Adds a small gap between the SVG and the number */
 }
 
-.streak-icon {
-    width: 50px;  /* Adjust the width of the icon */
-    height: auto;  /* Keep the aspect ratio */
-    
+.streak-wrapper img {
+    margin-bottom: 9px;
+    width: 25px;
 }
 
 #count {
@@ -103,3 +114,87 @@ img {
     font-weight: 400;
 }
 
+#plus {
+    width: 65px;
+    transition: transform .5s ease; /* Add transition on the original state */
+}
+
+#plus:hover {
+    transform: scale(1.25);
+}
+
+.burger {
+    height: 3em;
+    width: 3em;
+    position: relative;
+    font-size: 12px;
+    cursor: pointer;
+    -webkit-transition: .2s all;
+    -o-transition: .2s all;
+    transition: .2s all;
+    -webkit-tap-highlight-color: transparent; }
+    .burger .burger-lines:after {
+      left: 0;
+      top: -1em; }
+    .burger .burger-lines:before {
+      left: 1em;
+      top: 1em; }
+    .burger:after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 150%;
+      width: 150%;
+      top: -25%;
+      left: -25%; }
+    .burger .burger-lines {
+      top: 50%;
+      margin-top: -0.125em; }
+      .burger .burger-lines, .burger .burger-lines:after, .burger .burger-lines:before {
+        pointer-events: none;
+        display: block;
+        content: '';
+        width: 100%;
+        border-radius: 0.25em;
+        background-color: white;
+        height: 0.25em;
+        position: absolute;
+        -webkit-transform: rotate(0);
+            -ms-transform: rotate(0);
+                transform: rotate(0); }
+      .burger .burger-lines:after {
+        left: 0;
+        top: -1em; }
+      .burger .burger-lines:before {
+        left: 1em;
+        top: 1em; }
+  .burger.burger-squeeze .burger-lines, .burger.burger-squeeze .burger-lines:after, .burger.burger-squeeze .burger-lines:before {
+    -webkit-transition: .2s top .2s, .1s left, .2s transform, .4s background-color .2s;
+    -o-transition: .2s top .2s, .1s left, .2s transform, .4s background-color .2s;
+    transition: .2s top .2s, .1s left, .2s transform, .4s background-color .2s; }
+  
+  .burger.burger-squeeze .burger-lines:after, .burger.burger-squeeze .burger-lines:before {
+    width: 2em; }
+  
+  .burger.burger-squeeze.open .burger-lines, .burger.burger-squeeze.open .burger-lines:after, .burger.burger-squeeze.open .burger-lines:before {
+    -webkit-transition: .2s background-color, .2s top, .2s left, .2s transform .15s;
+    -o-transition: .2s background-color, .2s top, .2s left, .2s transform .15s;
+    transition: .2s background-color, .2s top, .2s left, .2s transform .15s; }
+  
+  .burger.burger-squeeze.open .burger-lines {
+    background-color: transparent; }
+  
+  .burger.burger-squeeze.open .burger-lines:before, .burger.burger-squeeze.open .burger-lines:after {
+    left: 0.5em;
+    top: 0px; }
+  
+  .burger.burger-squeeze.open .burger-lines:before {
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
+  
+  .burger.burger-squeeze.open .burger-lines:after {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg); 
+        }
