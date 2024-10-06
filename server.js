@@ -63,6 +63,39 @@ app.post('/habit', async (req, res) => {
   res.json(result); // Send back the created habit as a JSON response
 });
 
+// In your server-side Express app
+// In your server-side Express app
+app.post('/habit/update-color', async (req, res) => {
+  const { habitId, color } = req.body;
+  
+  try {
+      // Update the color in your database using SQL
+      await db.run("UPDATE habit SET color = ? WHERE id = ?", [color, habitId]);
+      res.status(200).json({ success: true, color });
+  } catch (error) {
+      console.error('Error updating color:', error);
+      res.status(500).json({ success: false, message: 'Failed to update color' });
+  }
+});
+
+app.post('/habit/update-streak', async (req, res) => {
+  const { habitId, streak } = req.body;
+
+  try {
+      // Update the current_streak in the database
+      await db.run("UPDATE habit SET current_streak = ? WHERE id = ?", [JSON.stringify(streak), habitId]);
+
+      res.status(200).json({ success: true, message: 'Streak updated successfully' });
+  } catch (error) {
+      console.error('Error updating streak:', error);
+      res.status(500).json({ success: false, message: 'Failed to update streak' });
+  }
+});
+
+
+
+
+
 
 app.get('/habit', async (req, res) => {
   const habits = await db.all("SELECT * FROM habit");
@@ -74,8 +107,18 @@ app.get('/habit', async (req, res) => {
 
 app.get('/habits', async (req, res) => {
   const habits = await db.all("SELECT * FROM habit");
-  res.json(habits);
+  
+  // Parse the streak JSON before sending it to the frontend
+  const updatedHabits = habits.map(habit => {
+      return {
+          ...habit,
+          current_streak: habit.current_streak ? JSON.parse(habit.current_streak) : []
+      };
+  });
+
+  res.json(updatedHabits);
 });
+
 
 
 app.get('/time', (req, res) => {

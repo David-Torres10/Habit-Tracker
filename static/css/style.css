@@ -6,22 +6,19 @@ body {
     background-color: #212121;
 }
 #title {
-    color: #ffffff;
+    color: #4bda63;
     font-weight: 600;
     font-size: 60px;
     text-shadow: #ffffff;
     margin-bottom: 50px;
 }
 
-#footer {
-    color: #4bda63;
-}
 
 .tracker-wrapper {
     display: flex;
     flex-wrap: wrap; /* Allows the trackers to wrap onto the next line if there's not enough space */
     justify-content: center;/* Centers the trackers horizontally */
-    gap: 50px; /* Adds space between the trackers */
+    gap: 25px; /* Adds space between the trackers */
     align-items: flex-start;
 }
 
@@ -33,16 +30,19 @@ body {
 
 .tracker {
     padding: 20px;
-    padding-right: 34px;
-    background-color: #444444;
+    /* padding-right: 34px; */
+    background-color: #424242;
     /* box-shadow: 0 4px 6px rgba(222, 56, 255, 0.1); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.521), 0 6px 20px 0 rgba(0, 0, 0, 0.678);
     border-radius: 10px;
-    color: #4bda63;
+    color: #ffffff;
     margin-top: 50px;
     margin-bottom: 50px;
     flex-grow: 0;
+    position: relative;
+    transition: background-color 0.5s ease;
 }
+
 .container {
     display: grid;
     flex-wrap: wrap;
@@ -58,18 +58,23 @@ body {
 
 
 .day {
-    width: 60px;
+    width: 70px;
     height: 60px;
     margin-bottom: 5px;
+    padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #e9ecef;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.6s ease;
     color: black;
     margin-right: 5px;
+    transition: transform .5s ease, background-color 0.5s ease;
+}
+
+.day:hover {
+    transform: scale(1.05);
 }
 
 .submit,
@@ -79,11 +84,11 @@ body {
 .submit:focus {
     background-color: #ffffff00;
     border-color: #ffffff00;
-    color: #ea00ff;
 }
 
 .day.x-marked {
-    background-color: #4bda63;
+    /* background-color: #4bda63; */
+    background-color: #a73333;
     color: white;
 }
 
@@ -104,27 +109,40 @@ body {
 }
 
 .streak-wrapper img {
+    margin-top: 0px;
     margin-bottom: 9px;
-    width: 25px;
+    width: 30px;
+    color: #ff36d3;
+    transition: color 0.5s ease;
 }
 
-.
-
 #count {
-    margin-top: 14px;
-    font-size: 24px;  /* Adjust font size as needed */
+    margin-top: 11.5px;
+    font-size: 30px;  /* Adjust font size as needed */
     font-weight: 400;
+    color: #ffffff;
 }
 
 #plus {
     width: 65px;
     transition: transform .5s ease; /* Add transition on the original state */
+    cursor: pointer;
 }
 
 #plus:hover {
     transform: scale(1.25);
 }
 
-.brush-icon img {
-    width: 50px;
+.brush-icon {
+    position: absolute; /* Enables positioning within the parent */
+    top: 10px; /* Adjust the distance from the top */
+    right: 10px; /* Adjust the distance from the right */
+    width: 20px; /* Adjust based on your image size */
+    height: 50px; /* Adjust based on your image size */
+    cursor: pointer;
+    transition: transform .5s ease;
+}
+
+.brush-icon:hover {
+    transform: scale(1.15);
 }
