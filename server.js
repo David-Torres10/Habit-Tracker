@@ -79,22 +79,18 @@ app.post('/habit/update-color', async (req, res) => {
 });
 
 app.post('/habit/update-streak', async (req, res) => {
-  const { habitId, streak } = req.body;
-
+  const { habitId, markedDays, dayColor } = req.body;
+  
   try {
-      // Update the current_streak in the database
-      await db.run("UPDATE habit SET current_streak = ? WHERE id = ?", [JSON.stringify(streak), habitId]);
-
-      res.status(200).json({ success: true, message: 'Streak updated successfully' });
+      // Update the habit with the marked days and color
+      await db.run("UPDATE habit SET marked_days = ?, day_color = ? WHERE id = ?", 
+                   [JSON.stringify(markedDays), dayColor, habitId]);
+      res.status(200).json({ success: true });
   } catch (error) {
-      console.error('Error updating streak:', error);
-      res.status(500).json({ success: false, message: 'Failed to update streak' });
+      console.error('Error updating streak and color:', error);
+      res.status(500).json({ success: false });
   }
 });
-
-
-
-
 
 
 app.get('/habit', async (req, res) => {
@@ -117,14 +113,6 @@ app.get('/habits', async (req, res) => {
   });
 
   res.json(updatedHabits);
-});
-
-
-
-app.get('/time', (req, res) => {
-  res.render('time', {
-      times:currentDateTime
-  });
 });
 
 // Start the server on port 3000
