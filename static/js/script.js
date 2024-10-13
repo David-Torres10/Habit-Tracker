@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const habitForm = document.getElementById('habitForm');
     const trackerContainer = document.getElementById('trackerContainer');
+    
 
     let currentDayBoxColor = '#4bda63'; // Default color for marked days
 
@@ -83,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const habitData = await response.json();
             createAndDisplayHabit(habitData);
             document.getElementById('habitForm').reset();
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('habitModal'));
+            modal.hide();
         }
     });
 
@@ -134,11 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Save the selected color and update currentDayBoxColor
         pickr.on('save', (color) => {
             const colorHex = color.toHEXA().toString();
-            currentDayBoxColor = colorHex;  // Update the global color variable
+            // currentDayBoxColor = colorHex;  // Update the global color variable
 
             // Re-render the calendar with the current marked days
             createCalendar(calendarContainer, habitData.total_days, habitData.id, markedDaysArray, colorHex);
             updateMarkedDaysOnServer(habitData.id, markedDaysArray, colorHex);
+            updateColorOnServer(habitData.id, colorHex);
         });
     }
 
@@ -190,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
                 if (this.classList.contains('x-marked')) {
                     this.textContent = 'X';
-                    this.style.backgroundColor = dayBoxColor; // Use the selected color for marked days
+                    this.style.backgroundColor = dayBoxColor || '#ffffff'; // Use the selected color for marked days
                     if (!markedDaysArray.includes(i)) markedDaysArray.push(i); // Add the day to the marked days array
                 } else {
                     this.textContent = i;

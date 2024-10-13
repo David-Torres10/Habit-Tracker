@@ -6,6 +6,7 @@ const { open } = require('sqlite');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
+const bcrypt = require('bcryptjs')
 
 
 const static_dir = path.join(__dirname, 'static');
@@ -49,27 +50,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 app.post('/habit', async (req, res) => {
-  const { habit_name, total_days, description } = req.body; // Ensure you have the correct variable names
+  const { habit_name, total_days, description } = req.body;
   console.log(req.body);
   const createdAt = formatDate(new Date());
   
-  // Insert the new habit into the database
   await db.run("INSERT INTO habit(habit_name, total_days, description, created_at) VALUES(?,?,?,?)", [habit_name, total_days, description, createdAt]);
   
-  // Fetch the last inserted habit (assuming there's an id column)
+  
   const result = await db.get("SELECT * FROM habit WHERE habit_name = ?", [habit_name]);
 
   console.log("SUCCESS");
-  res.json(result); // Send back the created habit as a JSON response
+  res.json(result); 
 });
 
-// In your server-side Express app
-// In your server-side Express app
+
 app.post('/habit/update-color', async (req, res) => {
   const { habitId, color } = req.body;
   
   try {
-      // Update the color in your database using SQL
       await db.run("UPDATE habit SET color = ? WHERE id = ?", [color, habitId]);
       res.status(200).json({ success: true, color });
   } catch (error) {
@@ -90,6 +88,10 @@ app.post('/habit/update-streak', async (req, res) => {
       console.error('Error updating streak and color:', error);
       res.status(500).json({ success: false });
   }
+});
+
+app.get('/calender', async (req, res) => {
+  res.render('calender')
 });
 
 
